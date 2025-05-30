@@ -1,0 +1,4 @@
+Bill: saaib
+pizza:                    ...$12
+tip:                      ...$3.00
+total:                    ...$15.00
