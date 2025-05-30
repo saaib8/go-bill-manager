@@ -44,8 +44,11 @@ func promptOption(b Bill) {
 		b.updateTip(tip)
 		promptOption(b)
 	case opt == "3":
-		fmt.Println(b.format())
+		go func() {
+			fmt.Println(b.format())
+		}()
 		promptOption(b)
+
 	case opt == "4":
 		b.save()
 		fmt.Println("Bill saved successfully.")

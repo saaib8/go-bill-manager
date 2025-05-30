@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 )
 
 type Bill struct {
@@ -20,8 +21,6 @@ func newBill(name string) Bill {
 	return b
 }
 
-
-
 func (b Bill) format() string {
 	fs := fmt.Sprintf("Bill: %v\n", b.name)
 	var total float64 = 0
@@ -36,6 +35,7 @@ func (b Bill) format() string {
 
 	// add total
 	fs += fmt.Sprintf("%-25v ...$%0.2f", "total:", total)
+	time.Sleep(10 * time.Second)
 
 	return fs
 }
@@ -49,13 +49,13 @@ func (b *Bill) updateTip(tip float64) {
 	b.tip = tip
 }
 
-func (b*Bill) save() {
-	data:=[]byte(b.format())
+func (b *Bill) save() {
+	data := []byte(b.format())
 	fileName := b.name + ".txt"
 	err := os.WriteFile(fileName, data, 0644)
-	if err != nil {	
+	if err != nil {
 		panic(err)
-	
-}
+
+	}
 	fmt.Printf("Bill saved to %v\n", fileName)
 }
